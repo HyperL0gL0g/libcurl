@@ -1,26 +1,18 @@
-#include <stdio.h>
+#include <iostream>
 #include <curl/curl.h>
-#include<string.h>
-struct map {
-    CURL* handle;
-    char* url;
-};
+#include <iterator> 
+#include <map>
+#include<string>
 
+using namespace std;
 //response handling function
-struct D
-{
-	size_t bytes;
-	char* resp;
-};
 
-size_t func(char* buffer , size_t itemsize, size_t n  , struct D* data)
+size_t func(char* buffer , size_t itemsize, size_t n  , void* data)
  {
  size_t bytes = itemsize*n;
  //for(int i=0;i<strlen(buffer);i++)
- 	//printf("%c",buffer[i]) ;
-
- printf("chunk size received in buffer = %zu\n", bytes);
-  
+ 	//printf("%c",buffer[i]) 
+ //cout << "chunk size received in buffer "<<  bytes << endl;
  return bytes;
  }
 int main(void)
@@ -37,14 +29,16 @@ curl = curl_easy_init(); //init the easy handle
 // setting flags to the easy handles
 	curl_easy_setopt(curl, CURLOPT_URL, "https://example.com");
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &func); //func will handle the request
-	curl_easy_setopt(curl2, CURLOPT_URL, "http://itsabhincsaav.com");
+	curl_easy_setopt(curl2, CURLOPT_URL, "http://itsabhinav.meow");
 	curl_easy_setopt(curl2, CURLOPT_WRITEFUNCTION, &func);
-  struct map entry1,entry2;
-  entry1.handle=curl;
-  entry1.url = "https://example.com";
-  entry1.handle=curl2;
-  entry1.url = "http://itsabhincsaav.com";
+  
+map<void*,string> maps;
+maps[curl]="https://example.com";
+maps[curl2]="http://itsabhinav.me";
 
+
+//maps.insert((void*)curl,"https://example.com");
+//maps.insert((void*)curl2,"http://itsabhincsaav.com");
 
 multi = curl_multi_init(); //init the multi handle
 curl_multi_add_handle(multi, curl);
@@ -62,14 +56,19 @@ struct CURLMsg *m;
   int msgq = 0;
   m = curl_multi_info_read(multi, &msgq);
   if(m && (m->msg == CURLMSG_DONE)) {
-    CURL *e = m->easy_handle;
+    CURL *e = m->easy_handle;  // individual handle returned
 
     CURLcode result;
     long http_code = 0;
      //get the http code returned by the server
         curl_easy_getinfo (e, CURLINFO_RESPONSE_CODE, &http_code);
-      printf("--------long http code : ----------%ld\n",http_code );
-      printf("Url = %s",e->url);
+      //cout<<"--------long http code : ----------"<< http_code<< endl;
+       map<void*,string>::iterator it ; 
+        it =maps.find((void*)e);
+        if(it == maps.end()) 
+        cout << "url  not present in map" ; 
+    else
+        cout<< "--------long http code : ----------: "<< http_code <<  " URL= " << it->second << endl; 
     
    // curl_multi_remove_handle(multi,e);
    // curl_easy_cleanup(e);
@@ -77,7 +76,7 @@ struct CURLMsg *m;
 } while(m);
    
     if(mc != CURLM_OK) {
-      fprintf(stderr, "curl_multi_wait() failed, code %d.\n", mc);
+      cout<< "curl_multi_wait() failed, code "<< mc;
       break;
     }
     
@@ -92,3 +91,4 @@ struct CURLMsg *m;
 		curl_global_cleanup(); // global cleanup
   return 0;
 }
+
