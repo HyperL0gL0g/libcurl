@@ -4,17 +4,19 @@
 #include <map>
 #include<string>
 
+
 using namespace std;
 long long c=0;
 //response handling function
 
 size_t func(char* buffer , size_t itemsize, size_t n  , void* data)
  {
+   cout << "func called"<< endl;
  size_t bytes = itemsize*n;
  //for(int i=0;i<strlen(buffer);i++)
  	//printf("%c",buffer[i]) 
- //cout << "chunk size received in buffer "<<  bytes << endl;
- cout << "func called"<< endl;
+ cout << "chunk size received in buffer "<<  bytes << endl;
+
  return bytes;
  }
 
@@ -24,7 +26,7 @@ CURLM *multi;  //curl multi handle
 CURL *curl; // simple curl handle
 CURL *curl2; //second simple curl handle
 CURLcode res; // res for error codes 
-int still_running = 2; //running processes 
+int still_running = 1; //running processes 
 curl_global_init(CURL_GLOBAL_ALL); // global init
 
 curl2 = curl_easy_init();  //init easy handle
@@ -42,43 +44,19 @@ curl = curl_easy_init(); //init the easy handle
 multi = curl_multi_init(); //init the multi handle
 curl_multi_add_handle(multi, curl);
 curl_multi_add_handle(multi, curl2); //adding the easy handle to the multi 
-struct CURLMsg *m;
+
   while(still_running) {
-
+    c++;
     CURLMcode mc; /* curl_multi_poll() return code */
-   
-
     /* we start some action by calling perform right away */
    // printf("before%d\n",still_running);
    // cout<< "MULTI PERFORM STARTED....." << endl;
     mc = curl_multi_perform(multi, &still_running);
     
    // cout<< ".......MULTI PERFORM FINISHED....." << endl;
-    do {
-  int msgq = 0;
-
-  m = curl_multi_info_read(multi, &msgq);
-  c++;
-
-        if(m && (m->msg == CURLMSG_DONE)) {
-          CURL *e = m->easy_handle;  // individual handle returned
-
-          CURLcode result;
-          long http_code = 0;
-           //get the http code returned by the server
-              curl_easy_getinfo (e, CURLINFO_RESPONSE_CODE, &http_code);
-          
-             map<void*,string>::iterator it ; 
-              it =maps.find((void*)e);
-              if(it == maps.end()) 
-              cout << "url  not present in map" ; 
-          else
-              cout<< " http code : : "<< http_code <<  " URL= " << it->second << endl;  
-         // curl_multi_remove_handle(multi,e);
-         // curl_easy_cleanup(e);
-        }
-
-} while(m);
+   
+   
+    
    
     if(mc != CURLM_OK) {
       cout<< "curl_multi_wait() failed, code "<< mc;

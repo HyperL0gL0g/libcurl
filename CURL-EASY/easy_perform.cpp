@@ -1,23 +1,18 @@
 // program to redirect the general behavior of curl to print in console  and print in a new way with line number
 #include <stdio.h>
 #include <curl/curl.h>
+#include <iostream>
+using namespace std;
  size_t func(char* buffer , size_t itemsize, size_t n  ,void* ignore)
  {
- 
- CURL *curl = curl_easy_init();
+ cout << "func called" << endl;
+  CURL *curl = curl_easy_init();
  
  size_t bytes = itemsize*n;
  printf("chunk size received = %zu\n", bytes);
  int line=1;
-
- char* raw = "www. ggs. vom";
- char* encoded = curl_easy_escape(curl,raw, 13);
- if(encoded){
- printf("Raw url  : %s , Encoded Url : %s\n",raw,encoded);
- curl_free(encoded);
- //printf("void ignore   :%s" ,ignore); 
- }
- return  bytes;
+ return bytes;
+ 
  }
 int main(void)
 {
@@ -30,11 +25,15 @@ int main(void)
   } 
   
  else if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "https://example.com"); //setting the url flag
+    curl_easy_setopt(curl, CURLOPT_URL, "https://mediamelon.com/"); //setting the url flag
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &func); // setting the writefunction to print data using out custom function 
     
     /* Perform the request, res will get the return code */ 
+    cout << "EASY PERFORM STARTED........." << endl;
     res = curl_easy_perform(curl);
+    cout << "---EASY PERFORM FINISHED---" << endl;
+    
+    
      long http_code = 0;
      //get the http code returned by the server
         curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &http_code);
