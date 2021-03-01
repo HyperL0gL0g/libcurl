@@ -8,12 +8,17 @@
 #include <curl/curl.h>
 using namespace std;
 FILE* fp;
-
+bool ex =false;
 size_t func(char* buffer , size_t itemsize, size_t n  ,FILE* fp)
  {
+ 	if(ex)
+ 	pthread_exit(0);
  //cout << "func called" << endl;
- for(int i=0;i<strlen(buffer);i++)
+ for(int i=0;i<strlen(buffer);i++){
+ 	if(ex)
+ 	pthread_exit(0);
   	fputc(buffer[i],fp);
+  }
  size_t bytes = itemsize*n;
  return bytes;
  }
@@ -23,8 +28,11 @@ size_t func(char* buffer , size_t itemsize, size_t n  ,FILE* fp)
  //thread function
 void* download_file(void* args)
 {
+	if(ex)
+	pthread_exit(0);
+
 	cout << "second thread working...." << endl;
-	//terminate();
+
 	CURL* curl;
 	curl = curl_easy_init();
 	CURLcode res;
@@ -33,8 +41,8 @@ void* download_file(void* args)
   fprintf(stderr,"error initialised%s\n" ,curl_easy_strerror(res));   
   } 
   else if(curl) {
-  	fp = fopen("new.txt","w+");
-    curl_easy_setopt(curl, CURLOPT_URL, "https://www.example.com"); //setting the url flag
+  	fp = fopen("t.txt","w+");
+    curl_easy_setopt(curl, CURLOPT_URL, "http://itsabhinav.me"); //setting the url flag
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, func);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA,fp); // fp is the file pointer
 
@@ -54,6 +62,7 @@ void* download_file(void* args)
 }
 	cout << "second thread DONE...." << endl;
 	fclose(fp);
+	sleep(3);
 	pthread_exit(0);
 }
 int main()
@@ -66,11 +75,11 @@ int main()
 			pthread_create(&download, &attr, download_file, NULL);
 			//thread started
 			cout << "Main thread working....."<< endl;
-			for(long i=0;i<1000000000;i++)
-			{
-							// just boiler plate to simulate real life  multithreading
-			}
-				cout << "Main thread DONE ......." << endl;
+			// simulation 
+			sleep(2);
+			ex=true;
+
+			cout << "Main thread DONE ......." << endl;
 			pthread_join(download, NULL);
 			cout << "thread joined" << endl;
 	return 0;
