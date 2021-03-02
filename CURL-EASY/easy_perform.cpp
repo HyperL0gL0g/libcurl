@@ -1,4 +1,4 @@
-// program to redirect the general behavior of curl to print in console  and print in a new way with line number
+// program to demonstrate easy_perform and also output the chunk of data received at each download
 #include <stdio.h>
 #include <curl/curl.h>
 #include <iostream>
@@ -10,9 +10,7 @@ using namespace std;
  
  size_t bytes = itemsize*n;
  printf("chunk size received = %zu\n", bytes);
- int line=1;
  return bytes;
- 
  }
 int main(void)
 {

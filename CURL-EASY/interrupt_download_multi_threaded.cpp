@@ -1,5 +1,4 @@
-//this program shows you how to write to a file using libcurl
-// the i variable shows how many individual chunks were downloaded
+//this program shows you how to interrupt a file download to stop it in between 
 #include <pthread.h>
 #include <iostream>
 #include <string.h>
@@ -9,27 +8,42 @@
 #include <curl/curl.h>
 using namespace std;
 FILE* fp;
-int i=0;
-
-size_t func(char* buffer , size_t itemsize, size_t n  ,FILE* fp)
+bool ex =false;
+size_t func(char* buffer , size_t itemsize, size_t n  ,void* userp)
  {
- //cout << "func called" << endl;
- 	cout << "downloading chunk " << i << endl;
- for(int i=0;i<strlen(buffer);i++)
+ 	
+ 	sleep(1);
+ 	if(ex)
+ 	{
+ 	cout << "exiting download thread from l17" << endl;
+ 	fclose(fp);
+ 	pthread_exit(0);
+	}
+ 
+ for(int i=0;i<strlen(buffer);i++){
+ 	if(ex){
+ 	cout << "exiting download thread from l23" << endl;
+ 	pthread_exit(0);
+ 	}
   	fputc(buffer[i],fp);
+  }
  size_t bytes = itemsize*n;
- cout << "downloaded chunk " << i << endl;
- i++;
+ cout << bytes << " bytes received" << endl;
  return bytes;
  }
 //TODO create one thread - trigger the download in that thread and stop that thread in 
-//string  url = "https://raw.githubusercontent.com/logicinfinite/libcurl/master/ufc.mp4";
-
+//string  url = "https://raw.githubusercontent.com/logicinfinite/sample_video/master/ufc.mp4
  //thread function
 void* download_file(void* args)
 {
+	if(ex){
+		cout << "exiting download thread from l38" << endl;
+		fclose(fp);
+	pthread_exit(0);
+}
+
 	cout << "second thread working...." << endl;
-	
+
 	CURL* curl;
 	curl = curl_easy_init();
 	CURLcode res;
@@ -38,10 +52,10 @@ void* download_file(void* args)
   fprintf(stderr,"error initialised%s\n" ,curl_easy_strerror(res));   
   } 
   else if(curl) {
-  	fp = fopen("new.txt","w+");
+  	fp = fopen("t.txt","w+");
     curl_easy_setopt(curl, CURLOPT_URL, "http://itsabhinav.me"); //setting the url flag
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, func);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA,fp); // fp is the file pointer
+  //  curl_easy_setopt(curl, CURLOPT_WRITEDATA,fp); // fp is the file pointer
 
     res = curl_easy_perform(curl);
      if(res != CURLE_OK){
@@ -59,6 +73,7 @@ void* download_file(void* args)
 }
 	cout << "second thread DONE...." << endl;
 	fclose(fp);
+	//sleep(3);
 	pthread_exit(0);
 }
 int main()
@@ -71,10 +86,10 @@ int main()
 			pthread_create(&download, &attr, download_file, NULL);
 			//thread started
 			cout << "Main thread working....."<< endl;
-			for(long i=0;i<1000000000;i++)
-			{
-							// just boiler plate to simulate real life  multithreading
-			}
+			// simulation 
+			sleep(2);
+			ex=true;
+
 			cout << "Main thread DONE ......." << endl;
 			pthread_join(download, NULL);
 			cout << "thread joined" << endl;

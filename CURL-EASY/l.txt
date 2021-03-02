@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Abhinava Ghosh</title>
+		<link rel = "icon" href =  "images/fb_round.ico" 
+        type = "image/x-icon"/>  
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main3.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="index.html">Abhinava Ghosh</a></div>
+				<a href="#menu"><span>Menu</span></a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<!-- <li><a href="contact.html">Contact me</a></li> -->
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+		<!--
+			Note: To show a background image, set the "data-bg" attribute below
+			to the full filename of your image. This is used in each section to set
+			the background image.
+		-->
+			<section id="banner" class="bg-img" data-bg="aboutme.gif">
+				<div class="inner">
+					<header>
+						<h1>About me</h1>
+						<p> CS Undergrad | Android dev | Web dev | Competitive Coding</p>
+					</header>
+				</div> 	
+				<a href="#one" class="more">Learn More</a>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper post bg-img" data-bg="free.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Freelance Software Developer</h2>
+							<p>Android | Web </p>
+						</header>
+						<div class="content">
+							<p>I work with all kinds of modern Java,Android and JavaScript Applications.
+									I help designers, small agencies and businesses bring their ideas to life.Powered by a plethora of modern 
+									technologies and some coffee ,I turn your requirements into attractive and convenient software - on time and on budget .</p>
+						</div>
+						<footer>
+							<a href="projects.html" class="button alt">Learn More</a>
+						</footer>
+					</article>
+				</div>
+				<a href="#three" class="more">Learn More</a>
+			</section>
+<!-- Three -->
+			<section id="three" class="wrapper post bg-img" data-bg="hack.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Hackathon Winner</h2>
+							<p>Won the APEC app challenge 2020</p>
+						</header>
+						<div class="content">
+							<p>Our project was one of the 5  winning projects in the apec app challenge 2020. The mobile application  instacheckin aimed at helping out the 
+						Tourism industry in the post covid world. Our next generation mobile app aims at making the check - in  process at
+						Hotels completely contactless and digital.</p>
+						</div>
+						<footer>
+							<a href="https://apec2020.devpost.com/project-gallery" class="button alt">Learn More</a>
+						</footer>
+					</article>
+				</div>
+				<a href="#two" class="more">Learn More</a>
+			</section>
+		<!-- Two -->
+			<section id="two" class="wrapper post bg-img" data-bg="gcj.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Competitive Programmer</h2>
+							<p>LeetCode | HackerEarth | Codeforces </p>
+						</header>
+						<div class="content">
+							<p>Very few things in the world grab my attention , and competitive programming is one of them .
+									I love solving mathematical and algorithmic problems through clean, readable and understandable code . I prefer JAVA as my 
+language but often I code in C++ and python and have solved more than 1000 problems in platforms like leetcode , codeforces , codewars and  hackearth.
+My personal best rank in competitive  coding was Rank 399/10000 in leetcode challenge.</p>
+						</div>
+						<footer>
+							<a href="https://leetcode.com/Abhinava_Ghosh/" class="button alt">Learn More</a>
+						</footer>
+					</article>	
+				</div>
+				<a href="#four" class="more">Learn More</a>
+			</section>
+
+		
+
+		<!-- Four -->
+			<section id="four" class="wrapper post bg-img" data-bg="kiit.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>University annual coding competition</h2>
+							<p>CODEVENTURE - 2019</p>
+						</header>
+						<div class="content">
+							<p>KIIT organises an annual coding competition each year to evaluate and honor the students with aptitude in competitive coding and general problem solving.
+						In 2019 KIIT organised CODEVENTURE which was the flagship event of KIIT -FEST 2019. Me along with my team-mate secured Rank 1 in the competition.</p>
+						</div>
+						<footer>
+							<a href="https://cse.kiit.ac.in/acolades/" class="button alt">Learn More</a>
+						</footer>
+					</article>
+				</div>
+			</section>
+			
+			<!-- Five-->
+				<section id="five" class="wrapper post bg-img" data-bg="dev.jpg">
+				<div class="inner">	
+					<article class="box">
+						<header>
+							<h2>blog</h2>
+							<p>Programming | Technology | Student Life
+							</p>
+						</header>
+						<div class="content">
+							<p>I love writing blogs on various topics which mainly include but are not restricted to technology , programming , coding ,software-hardware , Java  and Android.
+							My blogs are also published in HackerEarth monthly newsletters and  other blogposts. 
+ 							</p>
+						</div>
+						<footer>
+							<a href="https://dev.to/the_unconventional_coder" class="button alt">Learn More</a>
+						</footer>
+					</article>
+				</div>
+			</section>
+			
+						<!--Six-->
+				<section id="five" class="wrapper post bg-img" data-bg="discord2.jpg">
+				<div class="inner">	
+					<article class="box">
+						<header>
+							<h2><a href ="https://discord.gg/WekzwGG">COMMUNITY</a></h2>
+							<p>Cracking-Coding-Interviews discord server	 </p>
+						</header>
+						<div class="content">
+						<p>If you are preparing for software engineering jobs and are looking for a server to help you in that , then I would suggest you to join my server 
+								which is aimed for this very same purpose.I built a community of developers, competitive coders , students ,  employees and interview experts from  around the world to come together and help each other in cracking software engineering interviews.
+ 							</p>
+						</div>
+						<footer>
+							<a href="https://discord.gg/WekzwGG" class="button alt">Learn More</a>
+						</footer>
+					</article>
+				</div>
+			</section>
+			
+			
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<h2>Contact Me</h2>
+
+					<form action="https://formspree.io/f/mleollop" method="post">
+
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" placeholder="Email">
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Send Message" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+
+					<ul class="icons">
+					
+				<li>
+				<a href="https://twitter.com/AbhinavGhosh5" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/logicinfinite" class="icon fa-github-square"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/abhinavghosh7/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						
+					</ul>
+
+					<div class="copyright">
+					&copy; Copyright 2020 | All Rights Reserved | Designed by Abhinava Ghosh
+					</div>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min3.js"></script>
+			<script src="assets/js/jquery.scrolly.min3.js"></script>
+			<script src="assets/js/jquery.scrollex.min3.js"></script>
+			<script src="assets/js/skel.min3.js"></script>
+			<script src="assets/js/util3.js"></script>
+			<script src="assets/js/main3.js"></script>
+
+	</body>
+</html>
