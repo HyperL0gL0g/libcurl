@@ -23,9 +23,9 @@ CURLcode res;
     curl_easy_setopt(curl, CURLOPT_URL, "https://raw.githubusercontent.com/logicinfinite/sample_video/master/ufc.mp4"); //setting the url flag
    // curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, func);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA,fp); // fp is the file pointer
-    cout << "downloading " << endl ;
+    ;
     res = curl_easy_perform(curl);
-	
+	cout << "downloading " << endl 
      if(res == CURLE_OK){
       cout << "download success"  << endl;
       }    
@@ -33,12 +33,12 @@ CURLcode res;
      if(res != CURLE_OK){
       fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
       }
-      /*
+      
       curl_off_t dl;
     res = curl_easy_getinfo(curl, CURLINFO_SIZE_DOWNLOAD_T, &dl);
     if(!res) {
       printf("Downloaded %" CURL_FORMAT_CURL_OFF_T " bytes\n", dl);
-    }*/
+    }
  		
     /* always cleanup */ 
   }
