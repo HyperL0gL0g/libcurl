@@ -11,25 +11,36 @@ FILE* fp;
 bool ex =false;
 size_t func(char* buffer , size_t itemsize, size_t n  ,FILE* fp)
  {
+ 	
+ 	sleep(1);
  	if(ex)
+ 	{
+ 	cout << "exiting download thread from l17" << endl;
+ 	fclose(fp);
  	pthread_exit(0);
- //cout << "func called" << endl;
+    }
+ 
  for(int i=0;i<strlen(buffer);i++){
- 	if(ex)
+ 	if(ex){
+ 	cout << "exiting download thread from l23" << endl;
+
  	pthread_exit(0);
+ 	}
   	fputc(buffer[i],fp);
   }
  size_t bytes = itemsize*n;
  return bytes;
  }
 //TODO create one thread - trigger the download in that thread and stop that thread in 
-//string  url = "https://raw.githubusercontent.com/logicinfinite/libcurl/master/ufc.mp4";
-
+//string  url = "https://raw.githubusercontent.com/logicinfinite/sample_video/master/ufc.mp4
  //thread function
 void* download_file(void* args)
 {
-	if(ex)
+	if(ex){
+		cout << "exiting download thread from l38" << endl;
+		fclose(fp);
 	pthread_exit(0);
+}
 
 	cout << "second thread working...." << endl;
 
@@ -62,7 +73,7 @@ void* download_file(void* args)
 }
 	cout << "second thread DONE...." << endl;
 	fclose(fp);
-	sleep(3);
+	//sleep(3);
 	pthread_exit(0);
 }
 int main()
