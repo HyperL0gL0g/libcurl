@@ -19,14 +19,13 @@ CURLcode res;
   fprintf(stderr,"error initialised%s\n" ,curl_easy_strerror(res));   
   } 
   else if(curl) {
-  	fp = fopen("vid0.mp4","wb");
+  	fp = fopen("vid.mp4","wb");
     curl_easy_setopt(curl, CURLOPT_URL, "https://raw.githubusercontent.com/logicinfinite/sample_video/master/ufc.mp4"); //setting the url flag
    // curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, func);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA,fp); // fp is the file pointer
-     curl_easy_setopt(curl, CURLOPT_TIMEOUT,10L); // use this to avoid too long downloads(here max time is set to 10 seconds)
-     cout << "downloading " << endl ;	
+    ;
     res = curl_easy_perform(curl);
-	
+	cout << "downloading " << endl 
      if(res == CURLE_OK){
       cout << "download success"  << endl;
       }    
